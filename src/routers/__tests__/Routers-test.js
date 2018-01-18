@@ -14,6 +14,10 @@ const ROUTERS = {
   StackRouter,
 };
 
+const dummyEventSubscriber = (name: string, handler: () => void) => ({
+  remove: () => {},
+});
+
 Object.keys(ROUTERS).forEach((routerName: string) => {
   const Router = ROUTERS[routerName];
 
@@ -50,19 +54,31 @@ Object.keys(ROUTERS).forEach((routerName: string) => {
       ];
       expect(
         router.getScreenOptions(
-          addNavigationHelpers({ state: routes[0], dispatch: () => false }),
+          addNavigationHelpers({
+            state: routes[0],
+            dispatch: () => false,
+            addListener: dummyEventSubscriber,
+          }),
           {}
         ).title
       ).toEqual(undefined);
       expect(
         router.getScreenOptions(
-          addNavigationHelpers({ state: routes[1], dispatch: () => false }),
+          addNavigationHelpers({
+            state: routes[1],
+            dispatch: () => false,
+            addListener: dummyEventSubscriber,
+          }),
           {}
         ).title
       ).toEqual('BarTitle');
       expect(
         router.getScreenOptions(
-          addNavigationHelpers({ state: routes[2], dispatch: () => false }),
+          addNavigationHelpers({
+            state: routes[2],
+            dispatch: () => false,
+            addListener: dummyEventSubscriber,
+          }),
           {}
         ).title
       ).toEqual('Baz-123');

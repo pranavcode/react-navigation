@@ -395,6 +395,17 @@ export type NavigationDrawerScreenOptions = {|
 |};
 
 /**
+ * Event subscription setter
+ */
+
+export type EventSubscriber = (
+  name: string,
+  handler: (payload: mixed) => void
+) => {
+  +remove: () => void,
+};
+
+/**
  * Navigator Prop
  */
 
@@ -404,11 +415,13 @@ export type NavigationDispatch = (
 
 export type NavigationProp<S> = {
   +state: S,
+  addListener: EventSubscriber,
   dispatch: NavigationDispatch,
 };
 
 export type NavigationScreenProp<+S> = {
   +state: S,
+  addListener: EventSubscriber,
   dispatch: NavigationDispatch,
   goBack: (routeKey?: ?string) => boolean,
   navigate: (

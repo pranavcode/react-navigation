@@ -3,6 +3,7 @@
 import * as React from 'react';
 
 import addNavigationHelpers from './addNavigationHelpers';
+import getChildEventSubscriber from './getChildEventSubscriber';
 
 import type {
   NavigationScreenProp,
@@ -57,6 +58,10 @@ export default function withCachedChildNavigation<
         this._childNavigationProps[route.key] = addNavigationHelpers({
           dispatch: navigation.dispatch,
           state: route,
+          addListener: getChildEventSubscriber(
+            navigation.addListener,
+            route.key
+          ),
         });
       });
     };
