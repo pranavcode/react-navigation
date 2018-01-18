@@ -27,6 +27,10 @@
 <PROJECT_ROOT>/examples
 <PROJECT_ROOT>/website/build
 
+.*/node_modules/react-native/Libraries/vendor/emitter/EmitterSubscription.js
+.*/node_modules/react-native/Libraries/vendor/emitter/EventSubscription.js
+.*/node_modules/react-native/Libraries/vendor/emitter/EventSubscriptionVendor.js
+
 [include]
 
 [libs]
@@ -41,6 +45,9 @@ emoji=true
 munge_underscores=true
 
 module.name_mapper='^[./a-zA-Z0-9$_-]+\.\(bmp\|gif\|jpg\|jpeg\|png\|psd\|svg\|webp\|m4v\|mov\|mp4\|mpeg\|mpg\|webm\|aac\|aiff\|caf\|m4a\|mp3\|wav\|html\|pdf\)$' -> 'RelativeImageStub'
+module.name_mapper='^EmitterSubscription$' -> 'fbemitter/lib/EmitterSubscription'
+module.name_mapper='^EventSubscription$' -> 'fbemitter/lib/EventSubscription'
+module.name_mapper='^EventSubscriptionVendor$' -> 'fbemitter/lib/EventSubscriptionVendor'
 
 module.file_ext=.js
 module.file_ext=.jsx
