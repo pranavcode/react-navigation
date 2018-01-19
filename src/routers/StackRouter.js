@@ -111,6 +111,7 @@ export default (
           childRouters[action.routeName] !== undefined
         ) {
           return {
+            isNavigating: false,
             index: 0,
             routes: [
               {
@@ -144,6 +145,7 @@ export default (
         };
         // eslint-disable-next-line no-param-reassign
         state = {
+          isNavigating: false,
           index: 0,
           routes: [route],
         };
@@ -195,7 +197,17 @@ export default (
             routeName: action.routeName,
           };
         }
-        return StateUtils.push(state, route);
+        return {
+          ...StateUtils.push(state, route),
+          isNavigating: action.immediate !== true,
+        };
+      }
+
+      if (action.type === NavigationActions.COMPLETE_NAVIGATE) {
+        return {
+          ...state,
+          isNavigating: false,
+        };
       }
 
       // Handle navigation to other child routers that are not yet pushed

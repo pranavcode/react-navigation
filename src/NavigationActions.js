@@ -12,6 +12,7 @@ import type {
   NavigationSetParamsAction,
   NavigationResetAction,
   NavigationUriAction,
+  NavigationCompleteNavigateAction,
   NavigationParams,
 } from './TypeDefinition';
 
@@ -21,6 +22,7 @@ const NAVIGATE = 'Navigation/NAVIGATE';
 const RESET = 'Navigation/RESET';
 const SET_PARAMS = 'Navigation/SET_PARAMS';
 const URI = 'Navigation/URI';
+const COMPLETE_NAVIGATE = 'Navigation/COMPLETE_NAVIGATE';
 
 const createAction = (type: string, fn: any) => {
   fn.toString = () => type;
@@ -97,6 +99,13 @@ const uri = createAction(
     uri: payload.uri,
   })
 );
+const completeNavigate = createAction(
+  COMPLETE_NAVIGATE,
+  (payload: { key: ?string }): NavigationCompleteNavigateAction => ({
+    type: COMPLETE_NAVIGATE,
+    key: payload.key,
+  })
+);
 
 const mapDeprecatedNavigateAction = (
   action: NavigationNavigateAction | DeprecatedNavigationNavigateAction
@@ -165,6 +174,7 @@ export default {
   RESET,
   SET_PARAMS,
   URI,
+  COMPLETE_NAVIGATE,
 
   // Action creators
   back,
@@ -173,6 +183,7 @@ export default {
   reset,
   setParams,
   uri,
+  completeNavigate,
 
   // TODO: Remove once old actions are deprecated
   mapDeprecatedActionAndWarn,

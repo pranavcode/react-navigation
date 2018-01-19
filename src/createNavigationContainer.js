@@ -17,8 +17,6 @@ import type {
   NavigationContainer,
 } from './TypeDefinition';
 
-import type { SubscriberSubscription } from 'fbemitter';
-
 type State<NavState> = {
   nav: ?NavState,
 };

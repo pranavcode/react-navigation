@@ -76,6 +76,7 @@ export default (
         state = {
           routes,
           index: initialRouteIndex,
+          isNavigating: false,
         };
         // console.log(`${order.join('-')}: Initial state`, {state});
       }

@@ -31,6 +31,7 @@ export type NavigationNavigateAction = {|
   type: 'Navigation/NAVIGATE',
   routeName: string,
   params?: NavigationParams,
+  immediate?: boolean,
 
   // The action to run inside the sub-router
   action?: NavigationNavigateAction,
@@ -109,12 +110,18 @@ export type DeprecatedNavigationUriAction = {|
   uri: string,
 |};
 
+export type NavigationCompleteNavigateAction = {|
+  type: 'Navigation/COMPLETE_NAVIGATE',
+  key: ?string,
+|};
+
 export type NavigationAction =
   | NavigationInitAction
   | NavigationNavigateAction
   | NavigationBackAction
   | NavigationSetParamsAction
-  | NavigationResetAction;
+  | NavigationResetAction
+  | NavigationCompleteNavigateAction;
 
 export type DeprecatedNavigationAction =
   | DeprecatedNavigationInitAction
@@ -146,6 +153,7 @@ export type NavigationState = {
    */
   index: number,
   routes: Array<NavigationRoute>,
+  isNavigating: boolean,
 };
 
 export type NavigationRoute = NavigationLeafRoute | NavigationStateRoute;

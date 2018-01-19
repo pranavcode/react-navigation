@@ -27,10 +27,6 @@
 <PROJECT_ROOT>/examples
 <PROJECT_ROOT>/website/build
 
-.*/node_modules/react-native/Libraries/vendor/emitter/EmitterSubscription.js
-.*/node_modules/react-native/Libraries/vendor/emitter/EventSubscription.js
-.*/node_modules/react-native/Libraries/vendor/emitter/EventSubscriptionVendor.js
-
 [include]
 
 [libs]
