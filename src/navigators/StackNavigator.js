@@ -6,6 +6,7 @@ import createNavigator from './createNavigator';
 import CardStackTransitioner from '../views/CardStack/CardStackTransitioner';
 import StackRouter from '../routers/StackRouter';
 import NavigatorTypes from './NavigatorTypes';
+import NavigationActions from '../NavigationActions';
 
 import type {
   NavigationRouteConfigMap,
@@ -64,7 +65,14 @@ export default (
       cardStyle={cardStyle}
       transitionConfig={transitionConfig}
       onTransitionStart={onTransitionStart}
-      onTransitionEnd={onTransitionEnd}
+      onTransitionEnd={() => {
+        const { state, dispatch } = props.navigation;
+        dispatch({
+          type: NavigationActions.COMPLETE_NAVIGATE,
+          key: state.key,
+        });
+        onTransitionEnd && onTransitionEnd();
+      }}
     />
   ));
 
